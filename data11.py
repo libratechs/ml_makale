@@ -1,22 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon May 13 20:09:05 2019
-
-@author: tayfu
-"""
-
-# -*- coding: utf-8 -*-
-"""
-Created on Mon May 13 03:29:31 2019
-
-@author: tayfu
-"""
-
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Mar 15 04:18:20 2018
-"""
 
 #1. kutuphaneler
 import numpy as np
@@ -68,13 +49,40 @@ y_pred2 = regressor.predict(x_test)
 
 
 
+#polynomial regression
+from sklearn.preprocessing import PolynomialFeatures
+poly_reg = PolynomialFeatures(degree = 2)
+
+X = x_train.values
+Y = y_train.values
+
+X_test = x_test.values
+Y_test = y_test.values
+
+
+x_poly = poly_reg.fit_transform(X)
+ 
+lin_reg2 = LinearRegression()
+lin_reg2.fit(x_poly,Y)
+ 
+poly_pred = lin_reg2.predict(poly_reg.fit_transform(X_test))
+
+#plt.plot(X,lin_reg2.predict(poly_reg.fit_transform(X)), color = 'blue')
+ 
+
+
+
+
 plt.title("pred dec.tree(green), pred mul.lin.reg.(blue) support vector reg (yellow) vs real (red)")
 plt.xlabel("katilimci")
 plt.ylabel("score (tons)")
+
 plt.plot(katilimci,y_pred1, color='green')
 plt.plot(katilimci,y_pred2, color='yellow')
 plt.plot(katilimci,y_pred, color='blue')
 plt.plot(katilimci,y_test, color='red')
+
+plt.plot(katilimci,poly_pred, color='pink')
 
 plt.show()
 
