@@ -67,7 +67,7 @@ lin_reg2.fit(x_poly,Y)
  
 poly_pred = lin_reg2.predict(poly_reg.fit_transform(X_test))
 
-#plt.plot(X,lin_reg2.predict(poly_reg.fit_transform(X)), color = 'blue')
+ 
  
 
 
